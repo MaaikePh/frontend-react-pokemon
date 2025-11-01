@@ -8,14 +8,17 @@ function PokemonCard({name}) {
     const [loading, toggleLoading] = useState(true);
 
     useEffect(() => {
+        const controller = new AbortController();
+        const signal = controller.signal;
+
         async function fetchPokemon() {
             toggleError(false);
             toggleLoading(true);
             try {
-                const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
-                console.log(response.data)
+                const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`, {signal,})
                 setPokemon(response.data)
             } catch (error) {
+                if (axios.isCancel(error) || error.name === 'CanceledError') return;
                 console.error(error)
                 toggleError(true);
             } finally {
@@ -24,13 +27,18 @@ function PokemonCard({name}) {
         }
 
         fetchPokemon()
+
+        return () => {
+            controller.abort();
+        }
+
     }, [name])
 
 
     return (
         <>
-            {error && <p>er ging iets mis bij het ophalen van de pokemon</p>}
-            {loading && <p>pokemon aan het laden...</p>}
+            {error && <p>er ging iets mis bij het ophalen van de Pokémon</p>}
+            {loading && <p>Pokémon aan het laden...</p>}
 
             {pokemon?.name && (
                 <article>

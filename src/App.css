@@ -2,6 +2,12 @@ h1 {
     text-align: center;
 }
 
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
 .pokemon-cards {
     display: flex;
     flex-wrap: wrap;
