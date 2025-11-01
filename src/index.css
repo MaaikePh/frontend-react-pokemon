@@ -4,8 +4,8 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: rgb(83, 91, 242);
+  background-color: #f0bc00;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -26,7 +26,8 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
+  justify-content: center;
+  align-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
@@ -43,11 +44,12 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #3b4cca;
   cursor: pointer;
   transition: border-color 0.25s;
 }
 button:hover {
+  background-color: #2a2e8a;
   border-color: #646cff;
 }
 button:focus,
