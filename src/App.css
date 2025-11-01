@@ -1,1 +1,7 @@
-/*Schrijf hier jouw eigen CSS!*/
+.pokemon-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.3rem;
+    margin-top: 2rem;
+}
