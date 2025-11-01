@@ -1,20 +1,20 @@
 import './PokemonCard.css';
 import {useEffect, useState} from 'react';
+import axios from 'axios';
 
 function PokemonCard({name}) {
     const [pokemon, setPokemon] = useState({});
     const [error, toggleError] = useState(false);
-    const [loading, toggleLoading] = useState(false);
+    const [loading, toggleLoading] = useState(true);
 
     useEffect(() => {
         async function fetchPokemon() {
             toggleError(false);
             toggleLoading(true);
             try {
-                const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
-                const data = await response.json();
-                console.log(data)
-                setPokemon(data)
+                const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
+                console.log(response.data)
+                setPokemon(response.data)
             } catch (error) {
                 console.error(error)
                 toggleError(true);
@@ -24,7 +24,7 @@ function PokemonCard({name}) {
         }
 
         fetchPokemon()
-    }, [])
+    }, [name])
 
 
     return (
